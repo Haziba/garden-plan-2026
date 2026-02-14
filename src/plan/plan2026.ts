@@ -243,16 +243,15 @@ export const plan2026: GardenPlan2026 = {
     year: 2026,
     location: "Nottingham, UK",
     beds: { length_cm: 180, width_cm: 60, count: 2 },
-    sun: "Beds run East-West, sun from South. South edge = sunniest, North edge = shadiest.",
+    sun: "Beds run East-West. Sun from South → Left Bed → Arch (80cm gap) → Right Bed → North. Height increases toward arch.",
     constraints: [
-      "Left bed can shade right bed if tall crops are placed on the left",
-      "Aim: high yield + nature friendly (semi-wild, lots of mulch/flowers, minimal bare soil)",
-      "Seedlings can get leggy on windowsill; use grow light if possible",
-      "Never allow arch canopy to fully close.",
+      "Tallest crops are at the arch side of beds.",
+      "Salad occupies the most shaded positions.",
+      "Courgette must remain upright.",
+      "Arch must remain porous — never allow canopy to fully close.",
       "Keep visible gap through centre of arch at all times.",
-      "Courgette must remain upright, not sprawling.",
-      "Salad strip stays under 20cm depth.",
       "No bare soil — always mulched.",
+      "Seedlings can get leggy on windowsill; use grow light if possible",
     ],
     structure: {
       id: "arch_cattle_panel",
@@ -806,12 +805,12 @@ export const plan2026: GardenPlan2026 = {
       category: "leafy",
       placement: {
         bed: "right",
-        zone: "south",
+        zone: "north",
         count: undefined,
         spacing_cm: "Scatter/broadcast in strips; thin as needed",
         footprint_notes:
-          "Dedicated salad succession strip across south edge of right bed.",
-        height_notes: "Low; good for south edge positions.",
+          "North edge of right bed (outer, most shaded). Continuous succession strip. Autumn greens later season.",
+        height_notes: "Low; benefits from shade in summer.",
       },
       companions: ["calendula"],
       tips: [
@@ -972,11 +971,11 @@ export const plan2026: GardenPlan2026 = {
       category: "fruiting",
       placement: {
         bed: "right",
-        zone: "north",
+        zone: "south",
         count: 1,
         spacing_cm: "Single plant; needs ~60cm spread",
         footprint_notes:
-          "One plant only! Courgettes produce huge amounts from a single plant.",
+          "South edge of right bed, closest to arch. Staked upright from day one.",
         height_notes: "Upright; staked from planting day",
         support: ["Upright stake from planting day"],
       },

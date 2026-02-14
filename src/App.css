@@ -76,6 +76,26 @@
   border: 1px solid #e0e0e0;
 }
 
+@media (max-width: 600px) {
+  .month-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    justify-content: flex-start;
+    max-width: 100%;
+  }
+  .month-tabs::-webkit-scrollbar { display: none; }
+  .month-tab {
+    flex: 0 0 auto;
+    min-width: 3.5rem;
+    scroll-snap-align: center;
+    text-align: center;
+  }
+  .season-tabs { display: none; }
+}
+
 .month-tab {
   padding: 0.5rem 0.9rem;
   border: none;
@@ -146,6 +166,21 @@
 
 .back-label {
   color: #9ca3af;
+}
+
+.bed-legend {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.bed-legend-item {
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid;
 }
 
 .beds-container {
@@ -227,9 +262,11 @@
   border-radius: 4px;
   padding: 0.25rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   min-height: 2.5rem;
   overflow: hidden;
+  gap: 0.2rem;
+  min-width: 0;
 }
 
 .grid-south  { grid-area: south; }
@@ -259,20 +296,29 @@
 }
 
 .zone-label {
-  display: block;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
   font-size: 0.5rem;
   text-transform: uppercase;
   color: #9ca3af;
   letter-spacing: 0.08em;
-  margin-bottom: 0.15rem;
   font-weight: 600;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .zone-crops {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr));
   gap: 3px;
-  align-content: flex-start;
+  align-content: stretch;
+  justify-items: stretch;
+  align-items: stretch;
+  flex: 1;
+  min-width: 0;
 }
 
 /* ---- Arch column ---- */
@@ -349,17 +395,21 @@
 
 /* ---- Crop chips ---- */
 .crop-chip {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 0.1rem;
   padding: 0.25rem 0.3rem;
   border-radius: 6px;
   border: 1px solid;
   font-size: 0.6rem;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
   line-height: 1.2;
   transition: box-shadow 0.15s;
-  min-width: 3rem;
   text-align: center;
 }
 
@@ -821,6 +871,10 @@
 }
 
 /* ========== Responsive ========== */
+@media (max-width: 600px) {
+  .app { padding: 0.5rem 0.5rem 3rem; }
+}
+
 .bed-zoom-toggle { display: none; }
 
 @media (max-width: 600px) {
@@ -842,12 +896,25 @@
     flex-direction: row;
     gap: 0;
     align-items: stretch;
+    max-width: 100%;
+    overflow: hidden;
   }
-  .beds-overview .bed { flex: 1; }
+  .beds-overview .bed { flex: 1; min-width: 0; padding: 0.15rem; }
+  .beds-overview .bed-header { display: none; }
+  .beds-overview .bed-grid-left,
+  .beds-overview .bed-grid-right {
+    grid-template-columns: auto 1fr auto;
+  }
+  .beds-overview .arch-column { min-width: 20px; width: 20px; }
+  .beds-overview .zone-label { display: none; }
   .beds-overview .bed-grid { aspect-ratio: 1 / 3; min-height: unset; }
   .beds-overview .crop-chip-name { display: none; }
   .beds-overview .crop-chip-status { display: none; }
-  .beds-overview .crop-chip { padding: 0.25rem 0.15rem; min-width: unset; }
+  .beds-overview .crop-chip { padding: 1px; min-width: unset; border: none; background: transparent; }
+  .beds-overview .crop-chip-icon { font-size: 0.85rem; }
+  .beds-overview .zone-crops { gap: 1px; grid-template-columns: 1fr; }
+  .beds-overview .bed-zone { padding: 0.15rem; gap: 0.1rem; }
+  .beds-overview .zone-label { font-size: 0.4rem; }
 
   .beds-zoomed {
     display: flex;
@@ -859,6 +926,9 @@
   .beds-zoomed .bed {
     flex: 0 0 calc(100% - 25px);
     scroll-snap-align: start;
+  }
+  .beds-zoomed .bed-grid {
+    aspect-ratio: 1 / 3;
   }
   .beds-zoomed .arch-column {
     flex: 0 0 50px;

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import type { MonthKey } from "../plan/plan2026";
 import { MONTH_KEYS, MONTH_LABELS, SEASONS } from "../plan/plan2026";
 
@@ -7,9 +8,20 @@ interface Props {
 }
 
 export function MonthSelector({ month, setMonth }: Props) {
+  const tabsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = tabsRef.current;
+    if (!container) return;
+    const active = container.querySelector(".month-tab.active") as HTMLElement | null;
+    if (!active) return;
+    const left = active.offsetLeft - container.offsetWidth / 2 + active.offsetWidth / 2;
+    container.scrollTo({ left, behavior: "smooth" });
+  }, [month]);
+
   return (
     <div className="month-selector">
-      <div className="month-tabs">
+      <div className="month-tabs" ref={tabsRef}>
         {MONTH_KEYS.map((m) => (
           <button
             key={m}

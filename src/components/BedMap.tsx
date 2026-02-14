@@ -220,6 +220,16 @@ export function BedMap({ month, crops, onCropClick }: Props) {
         />
       </div>
       <div className="bed-map-label back-label">north (shade)</div>
+      <div className="bed-legend">
+        {(["sow", "grow", "harvest", "maintain", "clear"] as DisplayCategory[]).map((cat) => {
+          const cfg = DISPLAY_CATEGORY_CONFIG[cat];
+          return (
+            <span key={cat} className="bed-legend-item" style={{ background: cfg.bg, color: cfg.color, borderColor: cfg.color }}>
+              {cfg.label}
+            </span>
+          );
+        })}
+      </div>
     </div>
   );
 }
