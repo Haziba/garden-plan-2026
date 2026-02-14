@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 :root {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.5;
-  color: #1a1a1a;
-  background: #fafafa;
+  color: #1a1a2e;
+  background: #f8f9fc;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 *,
@@ -19,6 +22,22 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* Luxe scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.22);
 }
 
 #root {
@@ -41,4 +60,9 @@ ul {
 button {
   cursor: pointer;
   font-family: inherit;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.2);
+  color: #1e1b4b;
 }

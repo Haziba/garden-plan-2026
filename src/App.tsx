@@ -37,14 +37,11 @@ function App() {
 
       <main className="app-main">
         <BedMap month={month} crops={crops} onCropClick={setSelectedCrop} />
-
-        <div className="side-panels">
-          <SummaryPanel month={month} crops={crops} />
-          <PrintSummary month={month} crops={crops} />
-        </div>
       </main>
 
+      <SummaryPanel month={month} crops={crops} />
       <CalendarPanel crops={crops} />
+      <PrintSummary month={month} crops={crops} />
 
       {selectedCrop && (
         <CropModal
