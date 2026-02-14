@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import type { MonthKey, CropPlan, DisplayCategory } from "../plan/plan2026";
-import { MONTH_LABELS, plan2026, STATUS_DISPLAY_CATEGORY, DISPLAY_CATEGORY_CONFIG } from "../plan/plan2026";
+import { MONTH_LABELS, plan2026, STATUS_DISPLAY_CATEGORY, DISPLAY_CATEGORY_CONFIG, MOON_PHASES_2026 } from "../plan/plan2026";
 
 interface Props {
   month: MonthKey;
@@ -68,9 +68,14 @@ export function SummaryPanel({ month, crops }: Props) {
         <div className="summary-moon">
           <span className="moon-icon">🌙</span>
           <ul>
-            {global.moon_guidance.map((g, i) => (
-              <li key={i}>{g}</li>
-            ))}
+            {global.moon_guidance.map((g, i) => {
+              const phases = MOON_PHASES_2026[month];
+              const dateRange = i === 0 ? phases.waxing : phases.waning;
+              const parts = g.split(":");
+              return (
+                <li key={i}>{parts[0]} ({dateRange}):{parts.slice(1).join(":")}</li>
+              );
+            })}
           </ul>
         </div>
 

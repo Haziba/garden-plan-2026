@@ -5,7 +5,7 @@ import { useMonth } from "./hooks/useMonth";
 import { MonthSelector } from "./components/MonthSelector";
 import { BedMap } from "./components/BedMap";
 import { SummaryPanel } from "./components/SummaryPanel";
-
+import { CalendarPanel } from "./components/CalendarPanel";
 import { CropModal } from "./components/CropModal";
 import { PrintSummary } from "./components/PrintSummary";
 import "./App.css";
@@ -43,6 +43,8 @@ function App() {
           <PrintSummary month={month} crops={crops} />
         </div>
       </main>
+
+      <CalendarPanel crops={crops} />
 
       {selectedCrop && (
         <CropModal

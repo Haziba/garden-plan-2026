@@ -115,6 +115,7 @@ export const MONTH_LABELS: Record<MonthKey, string> = {
 };
 
 export const SEASONS: { label: string; months: MonthKey[] }[] = [
+  { label: "Winter", months: ["feb"] },
   { label: "Spring", months: ["mar", "apr", "may"] },
   { label: "Summer", months: ["jun", "jul", "aug"] },
   { label: "Autumn", months: ["sep", "oct"] },
@@ -225,6 +226,18 @@ export const DISPLAY_CATEGORY_CONFIG: Record<DisplayCategory, { label: string; c
   harvest: { label: "Harvest", color: "#b45309", bg: "#fef3c7" },
   maintain: { label: "Maintain", color: "#2563eb", bg: "#dbeafe" },
   clear: { label: "Clear", color: "#78716c", bg: "#f5f5f4" },
+};
+
+export const MOON_PHASES_2026: Record<MonthKey, { new_moon: string; first_quarter: string; full_moon: string; last_quarter: string; waxing: string; waning: string }> = {
+  feb: { new_moon: "Feb 17", first_quarter: "Feb 24", full_moon: "Feb 1", last_quarter: "Feb 9", waxing: "Feb 17 – Mar 3", waning: "Feb 1 – Feb 17" },
+  mar: { new_moon: "Mar 18", first_quarter: "Mar 25", full_moon: "Mar 3", last_quarter: "Mar 11", waxing: "Mar 18 – Apr 1", waning: "Mar 3 – Mar 18" },
+  apr: { new_moon: "Apr 17", first_quarter: "Apr 24", full_moon: "Apr 1", last_quarter: "Apr 10", waxing: "Apr 17 – May 1", waning: "Apr 1 – Apr 17" },
+  may: { new_moon: "May 16", first_quarter: "May 23", full_moon: "May 1 & May 31", last_quarter: "May 9", waxing: "May 16 – May 31", waning: "May 1 – May 16" },
+  jun: { new_moon: "Jun 14", first_quarter: "Jun 22", full_moon: "Jun 29", last_quarter: "Jun 8", waxing: "Jun 14 – Jun 29", waning: "Jun 1 – Jun 14" },
+  jul: { new_moon: "Jul 14", first_quarter: "Jul 21", full_moon: "Jul 29", last_quarter: "Jul 7", waxing: "Jul 14 – Jul 29", waning: "Jul 1 – Jul 14" },
+  aug: { new_moon: "Aug 12", first_quarter: "Aug 19", full_moon: "Aug 28", last_quarter: "Aug 6", waxing: "Aug 12 – Aug 28", waning: "Aug 1 – Aug 12" },
+  sep: { new_moon: "Sep 11", first_quarter: "Sep 18", full_moon: "Sep 26", last_quarter: "Sep 4", waxing: "Sep 11 – Sep 26", waning: "Sep 1 – Sep 11" },
+  oct: { new_moon: "Oct 10", first_quarter: "Oct 18", full_moon: "Oct 25", last_quarter: "Oct 4", waxing: "Oct 10 – Oct 25", waning: "Oct 1 – Oct 10" },
 };
 
 export const MONTH_COLORS: Record<MonthKey, { primary: string; bg: string; accent: string }> = {

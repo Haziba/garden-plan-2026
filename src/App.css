@@ -562,6 +562,23 @@
   margin-bottom: 0.1rem;
 }
 
+.moon-dates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.2rem 0.75rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.7rem;
+}
+
+.moon-periods {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
 .summary-tasks {
   border-top: 1px solid #e5e7eb;
   padding-top: 0.5rem;
@@ -680,6 +697,199 @@
 
 .moon-list li {
   margin-bottom: 0.15rem;
+}
+
+/* ========== Calendar Panel ========== */
+.calendar-fab { display: none; }
+.calendar-sheet-close { display: none; }
+.calendar-panel { display: none; }
+
+@media (max-width: 900px) {
+  .calendar-fab {
+    display: flex;
+    position: fixed;
+    bottom: 4.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    background: var(--month-primary, #4b5563);
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .calendar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 60;
+  }
+
+  .calendar-panel {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 70;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+    background: #fff;
+    padding: 1rem;
+  }
+
+  .calendar-panel-open {
+    transform: translateY(0);
+  }
+
+  .calendar-sheet-close {
+    display: block;
+    position: sticky;
+    top: 0;
+    float: right;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #9ca3af;
+    padding: 0.25rem;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .calendar-sheet-close:hover {
+    color: #374151;
+  }
+}
+
+.calendar-panel h2 {
+  font-size: 1.1rem;
+  color: var(--month-primary, #374151);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.calendar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  border-left: 3px solid #e5e7eb;
+  margin-left: 0.5rem;
+  padding-left: 1rem;
+}
+
+.calendar-month {
+  position: relative;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.calendar-month::before {
+  content: "";
+  position: absolute;
+  left: -1.35rem;
+  top: 1rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d1d5db;
+  border: 2px solid #fff;
+}
+
+.calendar-month-now {
+  background: rgba(var(--month-primary-rgb, 99, 102, 241), 0.05);
+  border-radius: 8px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.calendar-month-now::before {
+  background: var(--month-primary, #4b5563);
+  width: 12px;
+  height: 12px;
+}
+
+.calendar-progress-line {
+  position: absolute;
+  left: -1.5rem;
+  right: 0;
+  height: 2px;
+  background: var(--month-primary, #ef4444);
+  z-index: 1;
+}
+
+.calendar-month-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.3rem;
+}
+
+.calendar-focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.4rem;
+}
+
+.calendar-focus-tag {
+  font-size: 0.65rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.calendar-tasks {
+  font-size: 0.75rem;
+  padding-left: 1.2em;
+  margin-bottom: 0.4rem;
+  color: #374151;
+}
+
+.calendar-tasks li {
+  margin-bottom: 0.15rem;
+}
+
+.calendar-crops {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.calendar-crop-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.calendar-crop-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #374151;
+  min-width: 5rem;
+}
+
+.calendar-crop-statuses {
+  display: flex;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+}
+
+.calendar-status-pill {
+  font-size: 0.6rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 10px;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 /* ========== Print Actions ========== */
