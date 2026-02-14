@@ -5,8 +5,17 @@
   padding: 1rem 1rem 3rem;
   position: relative;
   z-index: 1;
-  background: var(--month-bg, transparent);
   min-height: 100vh;
+  transition: background-color 0.3s;
+}
+
+/* Full-bleed background behind the constrained content */
+.app::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: var(--month-bg, #fff);
+  z-index: -1;
   transition: background-color 0.3s;
 }
 
@@ -190,8 +199,9 @@
   flex: 1;
   display: grid;
   grid-template-columns: auto 1fr auto;
-  grid-template-rows: 1fr 1.2fr 1fr;
+  grid-template-rows: 1fr 1.5fr 1fr;
   gap: 4px;
+  min-height: 350px;
 }
 
 /* ---- Zone cells ---- */
@@ -202,14 +212,14 @@
   padding: 0.25rem;
   display: flex;
   flex-direction: column;
-  min-height: 0;
+  min-height: 2.5rem;
   overflow: hidden;
 }
 
 /* Arch zone stretches the full height of the bed on its inner edge */
 .grid-arch {
   grid-row: 1 / 4;
-  min-width: 3rem;
+  min-width: 3.5rem;
   background: rgba(220, 240, 210, 0.3);
   border-color: rgba(160, 200, 140, 0.4);
 }
@@ -218,6 +228,12 @@
 .grid-edge-top {
   grid-row: 1 / 4;
   min-width: 2.5rem;
+}
+
+/* Corner zones span full height like arch */
+.grid-corner {
+  grid-row: 1 / 4;
+  min-width: 3rem;
 }
 
 /* Empty spacer cells */
@@ -320,14 +336,17 @@
 /* ---- Crop chips ---- */
 .crop-chip {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.2rem;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
+  gap: 0.1rem;
+  padding: 0.25rem 0.3rem;
+  border-radius: 6px;
   border: 1px solid;
   font-size: 0.6rem;
   line-height: 1.2;
   transition: box-shadow 0.15s;
+  min-width: 3rem;
+  text-align: center;
 }
 
 .crop-chip:hover {
@@ -335,20 +354,24 @@
 }
 
 .crop-chip-icon {
-  font-size: 0.7rem;
+  font-size: 1.1rem;
+  line-height: 1;
 }
 
 .crop-chip-name {
   font-weight: 600;
-  max-width: 80px;
+  font-size: 0.5rem;
+  max-width: none;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .crop-chip-status {
-  font-size: 0.5rem;
+  font-size: 0.45rem;
   opacity: 0.75;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 /* ========== Summary Panel ========== */

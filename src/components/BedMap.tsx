@@ -1,6 +1,22 @@
 import type { MonthKey, CropPlan, BedKey, Zone, DisplayCategory } from "../plan/plan2026";
 import { STATUS_DISPLAY_CATEGORY, DISPLAY_CATEGORY_CONFIG, plan2026 } from "../plan/plan2026";
 
+const CROP_EMOJI: Record<string, string> = {
+  salad_leaves_left: "🥬",
+  salad_leaves_right: "🥬",
+  peppers: "🌶️",
+  basil: "🌿",
+  marigold: "🌼",
+  nasturtium: "🌺",
+  cucumbers: "🥒",
+  pumpkin_1: "🎃",
+  dwarf_french_beans: "🫘",
+  courgette: "🫑",
+  peas: "🫛",
+  borage: "💠",
+  calendula: "🌻",
+};
+
 interface Props {
   month: MonthKey;
   crops: CropPlan[];
@@ -39,6 +55,9 @@ function CropChip({
       onClick={onClick}
       title={`${crop.name} — ${badge.label}`}
     >
+      <span className="crop-chip-icon">
+        {CROP_EMOJI[crop.id] || "🌱"}
+      </span>
       <span className="crop-chip-name">
         {crop.name.split("(")[0].trim()}
       </span>
