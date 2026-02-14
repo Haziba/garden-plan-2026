@@ -242,12 +242,17 @@ export const plan2026: GardenPlan2026 = {
   meta: {
     year: 2026,
     location: "Nottingham, UK",
-    beds: { length_cm: 180, width_cm: 90, count: 2 },
+    beds: { length_cm: 180, width_cm: 60, count: 2 },
     sun: "Beds run East-West, sun from South. South edge = sunniest, North edge = shadiest.",
     constraints: [
       "Left bed can shade right bed if tall crops are placed on the left",
       "Aim: high yield + nature friendly (semi-wild, lots of mulch/flowers, minimal bare soil)",
       "Seedlings can get leggy on windowsill; use grow light if possible",
+      "Never allow arch canopy to fully close.",
+      "Keep visible gap through centre of arch at all times.",
+      "Courgette must remain upright, not sprawling.",
+      "Salad strip stays under 20cm depth.",
+      "No bare soil — always mulched.",
     ],
     structure: {
       id: "arch_cattle_panel",
@@ -272,11 +277,8 @@ export const plan2026: GardenPlan2026 = {
       global: {
         focus: ["Start strong seedlings", "Improve light to prevent legginess"],
         tasks: [
-          "Sow peppers indoors (heated propagator).",
-          "Optional: sow early salad leaves indoors for left bed south edge.",
-          "Improve light to prevent legginess: add a small grow light (14-16h/day) and keep it close to seedlings.",
-          "Prepare pots/modules and labels; check compost/seed-start mix.",
-          "Sketch bed zones + decide arch placement and fixings.",
+          "Sow peppers indoors.",
+          "Use strong light to prevent legginess.",
         ],
         moon_guidance: [
           "Waxing moon: good for sowing above-ground crops indoors (e.g., peppers).",
@@ -289,11 +291,9 @@ export const plan2026: GardenPlan2026 = {
       global: {
         focus: ["Early greens + spring vertical", "Succession mindset begins"],
         tasks: [
-          "Direct sow peas at the arch (as soon as soil workable).",
-          "Direct sow first salad batch in right bed south strip.",
-          "Direct sow calendula at right bed edges.",
-          "Keep peppers growing indoors; pot on if roots fill cells.",
-          "Start thinking about slug protection now (beer traps, wool pellets, copper tape, night checks).",
+          "Direct sow peas on arch.",
+          "Direct sow first salads.",
+          "Pot on peppers if needed.",
         ],
         moon_guidance: [
           "Waxing moon: sow leafy and above-ground crops.",
@@ -306,13 +306,8 @@ export const plan2026: GardenPlan2026 = {
       global: {
         focus: ["Build momentum", "Start warm-season crops indoors"],
         tasks: [
-          "Start cucumbers indoors late April.",
-          "Start pumpkin indoors mid/late April.",
-          "Start courgette indoors mid/late April.",
-          "Dwarf French beans: sow indoors (or wait for May direct sow).",
-          "Start basil indoors in modules.",
-          "Continue salad successions every 3-4 weeks.",
-          "Check arch stability; add ties/clips ready for training.",
+          "Start cucumber, pumpkin, courgette indoors.",
+          "Continue salad succession.",
         ],
         moon_guidance: [
           "Waxing moon: sow/plant above-ground crops (salads, peas, cucumbers, courgettes).",
@@ -325,13 +320,10 @@ export const plan2026: GardenPlan2026 = {
       global: {
         focus: ["Hardening off + planting out", "Build canopy + mulch deeply"],
         tasks: [
-          "Harden off all warm crops (peppers, cucumbers, courgette, pumpkin, French beans).",
-          "Transplant out after last frost risk (late May for Nottingham).",
-          "Install supports immediately BEFORE plants sprawl (arch ties, strings, clips).",
-          "Mulch deeply (compost + leaf mould) to lock in moisture and reduce weeds.",
-          "Direct sow dwarf French beans if not started indoors.",
-          "Transplant marigolds out around left bed middle (between peppers).",
-          "Direct sow or transplant nasturtiums at left bed south edge.",
+          "Harden off all warm crops.",
+          "Transplant once soil consistently 12\u201315\u00b0C+.",
+          "Install supports immediately.",
+          "Mulch deeply after planting.",
         ],
         moon_guidance: [
           "Waxing moon: transplanting above-ground crops is ideal if weather allows.",
@@ -344,12 +336,9 @@ export const plan2026: GardenPlan2026 = {
       global: {
         focus: ["Training + feeding begins", "Harvest rhythm starts"],
         tasks: [
-          "Remove peas as they finish; clear vines and compost/chop-and-drop.",
-          "Begin weekly feeding of cucumbers, courgette, pumpkin once flowering/fruiting starts.",
-          "Train cucumber + pumpkin weekly on arch.",
-          "Keep salad succession sowing going.",
-          "Dwarf French beans: growing and flowering.",
-          "Regular pest checks (aphids, slugs, mildew).",
+          "Remove peas as soon as harvest declines.",
+          "Begin weekly feeding of cucumber, pumpkin, courgette.",
+          "Begin weekly training routine (arch + courgette stake).",
         ],
         moon_guidance: [
           "Waxing moon: sow more salads and quick greens.",
@@ -362,16 +351,9 @@ export const plan2026: GardenPlan2026 = {
       global: {
         focus: ["Peak production", "Ruthless Pruning Week"],
         tasks: [
-          "Harvest courgettes, cucumbers, salad, French beans frequently.",
-          "Peppers starting to produce; harvest as they ripen.",
-          "Feed weekly (especially cucumbers, courgette, pumpkin).",
-          "Ruthless Pruning Week tasks:",
-          "  - Maintain airflow spine on arch — remove crossing/crowding growth.",
-          "  - Remove overcrowded leaves from peppers for air circulation.",
-          "  - Keep pumpkin contained — pinch side shoots, limit to 3-4 fruit.",
-          "  - Remove yellowing courgette leaves immediately.",
-          "  - Check for and remove any mildew-affected foliage.",
-          "Succession sow salads (and optionally late greens).",
+          "Continue feeding.",
+          "Harvest frequently.",
+          "RUTHLESS STRUCTURAL CONTROL WEEK: Maintain open airflow spine on arch. Keep cucumber tied and vertical. Limit pumpkin to single leader. Remove excess courgette leaves. Thin salad hard. Remove any leaf touching soil.",
         ],
         moon_guidance: [
           "Waxing moon: sow salads and greens.",
@@ -384,12 +366,10 @@ export const plan2026: GardenPlan2026 = {
       global: {
         focus: ["Keep harvesting + start the autumn pivot", "Continue maintaining airflow"],
         tasks: [
-          "Continue feeding and harvesting cucumbers, courgettes, peppers, French beans.",
-          "Harvest French beans regularly to keep production going.",
-          "Start sowing autumn greens (spinach, rocket) late August.",
-          "Watch for powdery mildew; improve airflow and water at soil level.",
-          "Continue maintaining airflow on arch and around all crops.",
-          "Let one lettuce bolt for pollinators (optional).",
+          "Maintain airflow discipline.",
+          "Continue feeding heavy feeders.",
+          "Sow autumn greens.",
+          "Monitor mildew closely.",
         ],
         moon_guidance: [
           "Waxing moon: sow autumn greens.",
@@ -402,12 +382,9 @@ export const plan2026: GardenPlan2026 = {
       global: {
         focus: ["Pumpkin ripening + autumn greens", "Wind down summer crops"],
         tasks: [
-          "Reduce feeding as summer crops slow.",
-          "Prioritise pumpkin ripening: expose fruit to light, keep off wet soil (tile/wood).",
+          "Reduce feeding.",
+          "Prioritise pumpkin ripening (expose fruit to light).",
           "Harvest remaining cucumbers and courgettes.",
-          "Dwarf French beans: final harvest and clear.",
-          "Continue salad and autumn greens harvest.",
-          "Keep harvesting salads and autumn greens.",
         ],
         moon_guidance: [
           "Waxing moon: sow greens if still warm enough.",
@@ -420,11 +397,10 @@ export const plan2026: GardenPlan2026 = {
       global: {
         focus: ["Clear + rebuild soil", "Set up next year"],
         tasks: [
-          "Harvest pumpkins before hard frosts; cure somewhere airy.",
-          "Clear all beds; chop-and-drop healthy material, bin diseased foliage.",
-          "Add compost and mulch thickly (leaf mould if available).",
-          "Optional: cover beds (cardboard + compost) for winter weed suppression.",
-          "Soil building across all beds.",
+          "Harvest pumpkins before frost.",
+          "Clear all beds.",
+          "Chop-and-drop healthy material.",
+          "Add compost and thick mulch.",
         ],
         moon_guidance: [
           "Waning moon: soil work, mulching, pruning/tidying jobs.",
@@ -447,15 +423,13 @@ export const plan2026: GardenPlan2026 = {
         zone: "south",
         count: undefined,
         spacing_cm: "Scatter/broadcast in strip; thin as needed",
-        footprint_notes:
-          "Early-season salad strip across south edge of left bed.",
+        footprint_notes: "Early spring salad (March\u2013May only)",
         height_notes: "Low; good for south edge positions.",
       },
-      companions: ["nasturtium", "basil"],
+      companions: ["basil"],
       tips: [
         "Start early indoors (Feb) for earliest harvests.",
         "Cut-and-come-again varieties give multiple harvests per sowing.",
-        "As peppers grow, salads benefit from their partial shade in summer.",
       ],
       months: {
         feb: {
@@ -486,31 +460,6 @@ export const plan2026: GardenPlan2026 = {
           ],
           harvestables: ["Salad leaves"],
         },
-        jun: {
-          status: ["harvest", "succession_sow"],
-          tasks: [
-            "Keep harvesting; sow more every 3-4 weeks.",
-            "Salads benefit from shade of growing peppers in hot weather.",
-          ],
-          harvestables: ["Salad leaves"],
-        },
-        jul: {
-          status: ["harvest"],
-          tasks: [
-            "Harvest regularly.",
-            "Heat-tolerant varieties do best now; shade from peppers helps.",
-          ],
-          harvestables: ["Salad leaves"],
-        },
-        aug: {
-          status: ["harvest"],
-          tasks: ["Continue harvests as long as plants produce."],
-          harvestables: ["Salad leaves"],
-        },
-        sep: {
-          status: ["clear"],
-          tasks: ["Clear spent plants; mulch area."],
-        },
       },
     },
 
@@ -522,8 +471,8 @@ export const plan2026: GardenPlan2026 = {
       placement: {
         bed: "left",
         zone: "middle",
-        count: 3,
-        spacing_cm: "35-40cm (diamond pattern)",
+        count: 2,
+        spacing_cm: "diamond stagger, ~40cm spacing",
         height_notes: "Medium height; benefits from warmth and shelter.",
         support: [
           "Optional cane support per plant",
@@ -607,9 +556,10 @@ export const plan2026: GardenPlan2026 = {
       category: "herb",
       placement: {
         bed: "left",
-        zone: "middle",
+        zone: "south",
         count: 3,
         spacing_cm: "Between peppers",
+        footprint_notes: "Basil under peppers once warm",
         height_notes: "Compact; good interplant beneath peppers.",
       },
       companions: ["peppers", "cucumbers"],
@@ -652,8 +602,8 @@ export const plan2026: GardenPlan2026 = {
       placement: {
         bed: "left",
         zone: "middle",
-        count: 4,
-        spacing_cm: "Interplanted between peppers in diamond gaps",
+        count: 1,
+        spacing_cm: "1 marigold between peppers",
         height_notes: "Low-medium; attracts hoverflies.",
       },
       companions: ["peppers", "basil"],
@@ -693,55 +643,6 @@ export const plan2026: GardenPlan2026 = {
       },
     },
 
-    // Left bed, south edge: nasturtiums (trailing)
-    {
-      id: "nasturtium",
-      name: "Nasturtiums (trailing, left bed south)",
-      category: "flower",
-      placement: {
-        bed: "left",
-        zone: "south",
-        count: 4,
-        spacing_cm: "Trailing from south edge of left bed",
-        footprint_notes: "Trail over edges; act as trap crop for aphids.",
-        height_notes: "Trailing/low; spills over bed edges.",
-      },
-      companions: ["cucumbers", "peppers", "pumpkin_1"],
-      tips: [
-        "Trap crop for blackfly — sacrifice them so other plants stay clean.",
-        "Edible flowers and leaves (peppery).",
-      ],
-      months: {
-        may: {
-          status: ["direct_sow", "transplant"],
-          tasks: ["Direct sow or transplant nasturtiums at left bed south edge."],
-        },
-        jun: {
-          status: ["growing", "flowering"],
-          tasks: [
-            "Let them trail and flower; they attract aphids away from crops.",
-          ],
-        },
-        jul: {
-          status: ["flowering", "harvest"],
-          tasks: ["Enjoy flowers; harvest edible leaves/flowers."],
-          harvestables: ["Nasturtium flowers/leaves"],
-        },
-        aug: {
-          status: ["flowering"],
-          tasks: ["Continue enjoying; they will self-seed."],
-        },
-        sep: {
-          status: ["flowering", "clear"],
-          tasks: ["Let some set seed; clear as they fade."],
-        },
-        oct: {
-          status: ["clear"],
-          tasks: ["Clear; will likely self-seed for next year."],
-        },
-      },
-    },
-
     // Left bed, north edge: cucumber (trained up arch)
     {
       id: "cucumbers",
@@ -756,7 +657,7 @@ export const plan2026: GardenPlan2026 = {
           "Vertical; will climb strongly and create shade under arch.",
         support: ["Arch + strings/ties", "Clips/twine for weekly training"],
       },
-      companions: ["basil", "salad_leaves_left", "nasturtium"],
+      companions: ["basil", "salad_leaves_left"],
       tips: [
         "Keep training weekly; untamed cucumbers become a tangled mess fast.",
         "Water at soil level to reduce mildew; improve airflow.",
@@ -833,10 +734,11 @@ export const plan2026: GardenPlan2026 = {
           "Trained vertically up arch; fruit may need sling support.",
         support: ["Arch", "Fabric slings for developing fruit"],
       },
-      companions: ["nasturtium", "borage"],
+      companions: ["borage"],
       tips: [
         "Limit to 3-4 fruit per plant for good sizing.",
         "Support fruit with old tights or fabric slings on arch.",
+        "Trained on single main leader. Remove secondary runners if invading beds.",
       ],
       months: {
         apr: {
@@ -911,7 +813,7 @@ export const plan2026: GardenPlan2026 = {
           "Dedicated salad succession strip across south edge of right bed.",
         height_notes: "Low; good for south edge positions.",
       },
-      companions: ["nasturtium", "calendula"],
+      companions: ["calendula"],
       tips: [
         "Succession sow every 3-4 weeks for continuous supply.",
         "Cut-and-come-again varieties give multiple harvests per sowing.",
@@ -993,9 +895,9 @@ export const plan2026: GardenPlan2026 = {
         bed: "right",
         zone: "middle",
         count: undefined,
-        spacing_cm: "15-20cm apart in rows, double row across middle strip",
+        spacing_cm: "15-20cm apart, single row, stagger sowing",
         footprint_notes:
-          "Strip across the middle of the right bed. Compact dwarf variety; no support needed.",
+          "Single row across middle of right bed. Stagger sowing for extended harvest.",
         height_notes: "Dwarf (40-50cm); bushy and self-supporting.",
       },
       companions: ["salad_leaves_right", "calendula", "borage"],
@@ -1075,13 +977,15 @@ export const plan2026: GardenPlan2026 = {
         spacing_cm: "Single plant; needs ~60cm spread",
         footprint_notes:
           "One plant only! Courgettes produce huge amounts from a single plant.",
-        height_notes: "Low-spreading; may shade neighbours.",
-        support: ["None needed; just space"],
+        height_notes: "Upright; staked from planting day",
+        support: ["Upright stake from planting day"],
       },
       companions: ["borage", "calendula"],
       tips: [
         "Harvest at 15-20cm for best flavour and to keep production high.",
         "One plant is enough. Seriously.",
+        "Staked upright from planting day",
+        "Remove large lower leaves regularly",
       ],
       months: {
         apr: {
@@ -1199,7 +1103,7 @@ export const plan2026: GardenPlan2026 = {
       placement: {
         bed: "right",
         zone: "corner",
-        count: 2,
+        count: 1,
         spacing_cm: "30-40cm; corners of right bed",
         height_notes: "Tall (60-90cm); put at back corners.",
       },
@@ -1249,7 +1153,7 @@ export const plan2026: GardenPlan2026 = {
       placement: {
         bed: "right",
         zone: "corner",
-        count: 4,
+        count: 1,
         spacing_cm: "Along edges and corners of right bed",
         height_notes: "Medium; cheerful orange flowers.",
       },

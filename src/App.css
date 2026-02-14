@@ -198,10 +198,26 @@
 .bed-grid {
   flex: 1;
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: 1fr 1.5fr 1fr;
   gap: 4px;
-  min-height: 350px;
+  aspect-ratio: 1 / 3;
+}
+
+.bed-grid-left {
+  grid-template-columns: 15% 1fr 15%;
+  grid-template-rows: 15% 55% 30%;
+  grid-template-areas:
+    "corner south  arch"
+    "corner middle arch"
+    "corner north  arch";
+}
+
+.bed-grid-right {
+  grid-template-columns: 15% 1fr 15%;
+  grid-template-rows: 15% 55% 30%;
+  grid-template-areas:
+    "arch south  corner"
+    "arch middle corner"
+    "arch north  corner";
 }
 
 /* ---- Zone cells ---- */
@@ -216,32 +232,30 @@
   overflow: hidden;
 }
 
-/* Arch zone stretches the full height of the bed on its inner edge */
+.grid-south  { grid-area: south; }
+.grid-middle { grid-area: middle; }
+.grid-north  { grid-area: north; }
+
 .grid-arch {
-  grid-row: 1 / 4;
+  grid-area: arch;
   min-width: 3.5rem;
   background: rgba(220, 240, 210, 0.3);
   border-color: rgba(160, 200, 140, 0.4);
 }
 
-/* Edge zone stretches the full height on the outer edge */
-.grid-edge-top {
-  grid-row: 1 / 4;
-  min-width: 2.5rem;
-}
-
-/* Corner zones span full height like arch */
 .grid-corner {
-  grid-row: 1 / 4;
+  grid-area: corner;
   min-width: 3rem;
 }
 
-/* Empty spacer cells */
-.grid-edge-mid,
-.grid-arch-top,
-.grid-arch-bot,
-.grid-corner-bot {
-  /* grid auto-placement handles these */
+/* Empty zone subtle styling */
+.bed-zone-empty {
+  opacity: 0.5;
+}
+
+.zone-empty-hint {
+  font-size: 0.6rem;
+  color: #d1d5db;
 }
 
 .zone-label {
@@ -457,6 +471,73 @@
 
 .summary-tasks li {
   margin-bottom: 0.2rem;
+}
+
+/* FAB pill button - hidden on desktop */
+.summary-fab { display: none; }
+.summary-sheet-close { display: none; }
+
+@media (max-width: 900px) {
+  .summary-fab {
+    display: flex;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    background: var(--month-primary, #4b5563);
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .summary-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 60;
+  }
+
+  .summary-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 70;
+    max-height: 75vh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+  }
+
+  .summary-panel-open {
+    transform: translateY(0);
+  }
+
+  .summary-sheet-close {
+    display: block;
+    position: sticky;
+    top: 0;
+    float: right;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #9ca3af;
+    padding: 0.25rem;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .summary-sheet-close:hover {
+    color: #374151;
+  }
 }
 
 /* ========== Moon Widget ========== */
@@ -740,49 +821,48 @@
 }
 
 /* ========== Responsive ========== */
+.bed-zoom-toggle { display: none; }
+
 @media (max-width: 600px) {
-  .beds-container {
-    flex-direction: column;
+  .bed-zoom-toggle {
+    display: inline-block;
+    align-self: flex-end;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid #d4d4d4;
+    background: #fff;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+
+  .beds-overview {
+    display: flex;
+    flex-direction: row;
     gap: 0;
+    align-items: stretch;
   }
+  .beds-overview .bed { flex: 1; }
+  .beds-overview .bed-grid { aspect-ratio: 1 / 3; min-height: unset; }
+  .beds-overview .crop-chip-name { display: none; }
+  .beds-overview .crop-chip-status { display: none; }
+  .beds-overview .crop-chip { padding: 0.25rem 0.15rem; min-width: unset; }
 
-  .bed-grid {
-    aspect-ratio: auto;
-  }
-
-  .arch-column {
-    width: 100%;
-    min-width: unset;
-    height: 36px;
-  }
-
-  .arch-visual {
+  .beds-zoomed {
+    display: flex;
     flex-direction: row;
-    padding: 0.2rem 0.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
-
-  .arch-line {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    right: 10px;
-    bottom: unset;
-    transform: translateY(-50%);
-    width: auto;
-    height: 0;
-    border-left: none;
-    border-top: 2px dotted #d4d4d4;
+  .beds-zoomed .bed {
+    flex: 0 0 calc(100% - 25px);
+    scroll-snap-align: start;
   }
-
-  .arch-title {
-    writing-mode: horizontal-tb;
-    font-size: 0.55rem;
-  }
-
-  .arch-crops {
-    flex-direction: row;
-    margin-top: 0;
-    margin-left: 0.3rem;
+  .beds-zoomed .arch-column {
+    flex: 0 0 50px;
+    scroll-snap-align: none;
   }
 
   .summary-grid {

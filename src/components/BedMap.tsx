@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import type { MonthKey, CropPlan, BedKey, Zone, DisplayCategory } from "../plan/plan2026";
 import { STATUS_DISPLAY_CATEGORY, DISPLAY_CATEGORY_CONFIG, plan2026 } from "../plan/plan2026";
 
@@ -7,7 +8,6 @@ const CROP_EMOJI: Record<string, string> = {
   peppers: "🌶️",
   basil: "🌿",
   marigold: "🌼",
-  nasturtium: "🌺",
   cucumbers: "🥒",
   pumpkin_1: "🎃",
   dwarf_french_beans: "🫘",
@@ -80,20 +80,22 @@ function ZoneCell({
   onCropClick: (crop: CropPlan) => void;
   className: string;
 }) {
-  if (crops.length === 0) return null;
-
   return (
-    <div className={`bed-zone ${className}`}>
+    <div className={`bed-zone ${className}${crops.length === 0 ? " bed-zone-empty" : ""}`}>
       <span className="zone-label">{zone}</span>
       <div className="zone-crops">
-        {crops.map((crop) => (
-          <CropChip
-            key={crop.id}
-            crop={crop}
-            month={month}
-            onClick={() => onCropClick(crop)}
-          />
-        ))}
+        {crops.length === 0 ? (
+          <span className="zone-empty-hint">—</span>
+        ) : (
+          crops.map((crop) => (
+            <CropChip
+              key={crop.id}
+              crop={crop}
+              month={month}
+              onClick={() => onCropClick(crop)}
+            />
+          ))
+        )}
       </div>
     </div>
   );
@@ -144,54 +146,44 @@ function BedDiagram({
   const arch = activeInZone("arch");
   const corner = activeInZone("corner");
 
-  // Left bed: corner on LEFT, arch on RIGHT
-  // Right bed: arch on LEFT, corner on RIGHT
-  const isLeft = bedKey === "left";
-
   return (
     <div className={`bed bed-${bedKey}`}>
       <div className="bed-header">
         <span className="bed-label">{label}</span>
-        <span className="bed-dimensions">90 × 180 cm</span>
+        <span className="bed-dimensions">180 × 60 cm</span>
       </div>
       <div className={`bed-grid bed-grid-${bedKey}`}>
-        {/* Row 1: south */}
-        <div className="grid-empty" />
         <ZoneCell zone="south" crops={south} month={month} onCropClick={onCropClick} className="grid-south" />
-        <div className="grid-empty" />
-
-        {/* Row 2: middle + side zones */}
-        {isLeft ? (
-          <>
-            <ZoneCell zone="corner" crops={corner} month={month} onCropClick={onCropClick} className="grid-corner" />
-            <ZoneCell zone="middle" crops={middle} month={month} onCropClick={onCropClick} className="grid-middle" />
-            <ZoneCell zone="arch" crops={arch} month={month} onCropClick={onCropClick} className="grid-arch" />
-          </>
-        ) : (
-          <>
-            <ZoneCell zone="arch" crops={arch} month={month} onCropClick={onCropClick} className="grid-arch" />
-            <ZoneCell zone="middle" crops={middle} month={month} onCropClick={onCropClick} className="grid-middle" />
-            <ZoneCell zone="corner" crops={corner} month={month} onCropClick={onCropClick} className="grid-corner" />
-          </>
-        )}
-
-        {/* Row 3: north */}
-        <div className="grid-empty" />
+        <ZoneCell zone="middle" crops={middle} month={month} onCropClick={onCropClick} className="grid-middle" />
         <ZoneCell zone="north" crops={north} month={month} onCropClick={onCropClick} className="grid-north" />
-        <div className="grid-empty" />
+        <ZoneCell zone="arch" crops={arch} month={month} onCropClick={onCropClick} className="grid-arch" />
+        <ZoneCell zone="corner" crops={corner} month={month} onCropClick={onCropClick} className="grid-corner" />
       </div>
     </div>
   );
 }
 
 export function BedMap({ month, crops, onCropClick }: Props) {
+  const [zoomed, setZoomed] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!zoomed && scrollRef.current) scrollRef.current.scrollLeft = 0;
+  }, [zoomed]);
+
   const archUsers = plan2026.meta.structure.used_by[month] || [];
   const archCrops = crops.filter((c) => archUsers.includes(c.id));
 
   return (
     <div className="bed-map">
       <div className="bed-map-label house-label">south (sunny)</div>
-      <div className="beds-container">
+      <button className="bed-zoom-toggle" onClick={() => setZoomed(z => !z)}>
+        {zoomed ? "Overview" : "Zoom"}
+      </button>
+      <div
+        ref={scrollRef}
+        className={`beds-container ${zoomed ? "beds-zoomed" : "beds-overview"}`}
+      >
         <BedDiagram
           bedKey="left"
           label="Left Bed (tall / heavy feeders)"
