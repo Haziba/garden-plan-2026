@@ -5,7 +5,7 @@ import { useMonth } from "./hooks/useMonth";
 import { MonthSelector } from "./components/MonthSelector";
 import { BedMap } from "./components/BedMap";
 import { SummaryPanel } from "./components/SummaryPanel";
-import { MoonWidget } from "./components/MoonWidget";
+
 import { CropModal } from "./components/CropModal";
 import { PrintSummary } from "./components/PrintSummary";
 import "./App.css";
@@ -40,7 +40,6 @@ function App() {
 
         <div className="side-panels">
           <SummaryPanel month={month} crops={crops} />
-          <MoonWidget month={month} />
           <PrintSummary month={month} crops={crops} />
         </div>
       </main>

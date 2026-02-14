@@ -33,7 +33,7 @@ export type Zone = "south" | "middle" | "north" | "arch" | "corner";
 
 export type BedKey = "left" | "right";
 
-export type DisplayCategory = "sow" | "grow" | "harvest" | "maintain" | "clear";
+export type DisplayCategory = "sow_indoors" | "sow_outdoors" | "grow" | "harvest" | "maintain" | "clear";
 
 export interface CropMonthState {
   status: Status[];
@@ -200,8 +200,8 @@ export const STATUS_CONFIG: Record<
 
 export const STATUS_DISPLAY_CATEGORY: Record<Status, DisplayCategory> = {
   plan: "maintain",
-  sow_indoors: "sow",
-  direct_sow: "sow",
+  sow_indoors: "sow_indoors",
+  direct_sow: "sow_outdoors",
   harden_off: "grow",
   transplant: "grow",
   install_support: "maintain",
@@ -209,7 +209,7 @@ export const STATUS_DISPLAY_CATEGORY: Record<Status, DisplayCategory> = {
   flowering: "grow",
   fruiting: "grow",
   harvest: "harvest",
-  succession_sow: "sow",
+  succession_sow: "sow_outdoors",
   thin: "maintain",
   feed: "maintain",
   prune_train: "maintain",
@@ -219,7 +219,8 @@ export const STATUS_DISPLAY_CATEGORY: Record<Status, DisplayCategory> = {
 };
 
 export const DISPLAY_CATEGORY_CONFIG: Record<DisplayCategory, { label: string; color: string; bg: string }> = {
-  sow: { label: "Sow", color: "#6d28d9", bg: "#ede9fe" },
+  sow_indoors: { label: "Sow indoors", color: "#7c3aed", bg: "#ede9fe" },
+  sow_outdoors: { label: "Sow outdoors", color: "#0284c7", bg: "#e0f2fe" },
   grow: { label: "Grow", color: "#16a34a", bg: "#dcfce7" },
   harvest: { label: "Harvest", color: "#b45309", bg: "#fef3c7" },
   maintain: { label: "Maintain", color: "#2563eb", bg: "#dbeafe" },

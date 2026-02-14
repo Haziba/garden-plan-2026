@@ -26,7 +26,7 @@ interface Props {
 function getDisplayCategory(crop: CropPlan, month: MonthKey) {
   const ms = crop.months[month];
   if (!ms) return null;
-  const priority: DisplayCategory[] = ["harvest", "sow", "grow", "maintain", "clear"];
+  const priority: DisplayCategory[] = ["harvest", "sow_indoors", "sow_outdoors", "grow", "maintain", "clear"];
   const categories = ms.status.map(s => STATUS_DISPLAY_CATEGORY[s]);
   const primary = priority.find(cat => categories.includes(cat)) || categories[0];
   return DISPLAY_CATEGORY_CONFIG[primary];
@@ -194,21 +194,43 @@ export function BedMap({ month, crops, onCropClick }: Props) {
         <div className="arch-column">
           <div className="arch-visual">
             <div className="arch-line" />
-            <span className="arch-title">Cattle-panel arch</span>
-            {archCrops.length > 0 && (
-              <div className="arch-crops">
-                {archCrops.map((c) => (
-                  <span key={c.id} className="arch-crop-tag">
-                    {c.name.split("(")[0].trim()}
+            <div className="arch-slot">
+              {archCrops[0] && (() => {
+                const cat = getDisplayCategory(archCrops[0], month);
+                return (
+                  <span className="arch-crop-icon" title={archCrops[0].name.split("(")[0].trim()}
+                    style={cat ? { background: cat.bg, borderColor: cat.color } : undefined}>
+                    {CROP_EMOJI[archCrops[0].id] || "🌱"}
                   </span>
-                ))}
+                );
+              })()}
+            </div>
+            {archCrops.length >= 3 ? (
+              <div className="arch-slot">
+                {(() => {
+                  const cat = getDisplayCategory(archCrops[2], month);
+                  return (
+                    <span className="arch-crop-icon" title={archCrops[2].name.split("(")[0].trim()}
+                      style={cat ? { background: cat.bg, borderColor: cat.color } : undefined}>
+                      {CROP_EMOJI[archCrops[2].id] || "🌱"}
+                    </span>
+                  );
+                })()}
               </div>
+            ) : (
+              <span className="arch-title">Cattle-panel arch</span>
             )}
-            {archCrops.length === 0 && (
-              <div className="arch-crops">
-                <span className="arch-crop-tag arch-empty">Empty</span>
-              </div>
-            )}
+            <div className="arch-slot">
+              {archCrops[1] && (() => {
+                const cat = getDisplayCategory(archCrops[1], month);
+                return (
+                  <span className="arch-crop-icon" title={archCrops[1].name.split("(")[0].trim()}
+                    style={cat ? { background: cat.bg, borderColor: cat.color } : undefined}>
+                    {CROP_EMOJI[archCrops[1].id] || "🌱"}
+                  </span>
+                );
+              })()}
+            </div>
           </div>
         </div>
         <BedDiagram
@@ -221,7 +243,7 @@ export function BedMap({ month, crops, onCropClick }: Props) {
       </div>
       <div className="bed-map-label back-label">north (shade)</div>
       <div className="bed-legend">
-        {(["sow", "grow", "harvest", "maintain", "clear"] as DisplayCategory[]).map((cat) => {
+        {(["sow_indoors", "sow_outdoors", "grow", "harvest", "maintain", "clear"] as DisplayCategory[]).map((cat) => {
           const cfg = DISPLAY_CATEGORY_CONFIG[cat];
           return (
             <span key={cat} className="bed-legend-item" style={{ background: cfg.bg, color: cfg.color, borderColor: cfg.color }}>

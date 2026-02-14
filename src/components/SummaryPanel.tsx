@@ -9,7 +9,8 @@ interface Props {
 
 function categoriseCrops(crops: CropPlan[], month: MonthKey) {
   const groups: Record<DisplayCategory, string[]> = {
-    sow: [],
+    sow_indoors: [],
+    sow_outdoors: [],
     grow: [],
     harvest: [],
     maintain: [],
@@ -50,7 +51,7 @@ export function SummaryPanel({ month, crops }: Props) {
   const global = plan2026.months[month].global;
   const groups = categoriseCrops(crops, month);
 
-  const categoryOrder: DisplayCategory[] = ["sow", "grow", "harvest", "maintain", "clear"];
+  const categoryOrder: DisplayCategory[] = ["sow_indoors", "sow_outdoors", "grow", "harvest", "maintain", "clear"];
 
   return (
     <>
@@ -63,6 +64,15 @@ export function SummaryPanel({ month, crops }: Props) {
       <div className={`summary-panel ${open ? "summary-panel-open" : ""}`}>
         <button className="summary-sheet-close" onClick={() => setOpen(false)}>&times;</button>
         <h2>{MONTH_LABELS[month]} — At a Glance</h2>
+
+        <div className="summary-moon">
+          <span className="moon-icon">🌙</span>
+          <ul>
+            {global.moon_guidance.map((g, i) => (
+              <li key={i}>{g}</li>
+            ))}
+          </ul>
+        </div>
 
         <div className="summary-focus">
           {global.focus.map((f, i) => (
